@@ -6,7 +6,7 @@
 import torch
 from torchvision import transforms
 from PIL import Image
-from code.model import VGG16
+from code.model import SimpleVGG16
 
 def inference_single_image(image_path, model, save_path):
     # Load and preprocess the image
@@ -37,14 +37,14 @@ def inference_single_image(image_path, model, save_path):
 
 if __name__ == "__main__":
     # Example usage:
-    image_path = "../data/test/IM-0001-0001.jpeg"
-    save_path = "results/inference_result.txt"
+    image_path = "../dataFull/1/IM-0001-0001.jpeg"
+    save_path = "../result/1_result.txt" #"results/inference_result.txt"
 
     # Instantiate the VGG16 model
-    vgg16_model = VGG16()
+    vgg16_model = SimpleVGG16()
 
     # Load the trained weights (replace 'path/to/your/model_weights.pth' with the actual path)
-    vgg16_model.load_state_dict(torch.load('path/to/your/model_weights.pth'))
+    vgg16_model.load_state_dict(torch.load('../result/1.pth')) #'path/to/your/model_weights.pth'
 
     # Run inference and save the result
     inference_single_image(image_path, vgg16_model, save_path)
