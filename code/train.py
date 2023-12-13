@@ -5,8 +5,8 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import transforms
-from code.model import VGG16
-from code.dataset import PneumoniaDataset
+from model import VGG16
+from dataset import PneumoniaDataset
 
 def train_model(dataset_path, output_checkpoint_path, num_epochs=10, learning_rate=0.001, batch_size=32):
     # Set up your dataset and dataloader
