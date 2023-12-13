@@ -1,36 +1,71 @@
-# #Includes all code related to the dataset,
-# # such as the dataset class, preprocessing,
-# # augmentation, and post-processing routines.
-#
-
+# # #Includes all code related to the dataset,
+# # # such as the dataset class, preprocessing,
+# # # augmentation, and post-processing routines.
 import os
-import torch
-from torchvision import datasets, transforms
+from torch.utils.data import Dataset
+from torchvision import transforms
+from PIL import Image
 
-def data_transforms(phase):
-    if phase == 'train':
-        transform = transforms.Compose([
-            transforms.Resize(256),
-            transforms.CenterCrop(224),
-            transforms.ToTensor(),
-            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
-        ])
-    elif phase == 'val' or phase == 'test':
-        transform = transforms.Compose([
-            transforms.Resize(256),
-            transforms.CenterCrop(224),
-            transforms.ToTensor(),
-            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
-        ])
-    return transform
 
-def load_datasets_and_dataloaders(data_dir):
-    image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x), data_transforms(x)) for x in ['train', 'val', 'test']}
-    dataloaders = {
-        'train': torch.utils.data.DataLoader(image_datasets['train'], batch_size=4, shuffle=True),
-        'val': torch.utils.data.DataLoader(image_datasets['val'], batch_size=1, shuffle=True),
-        'test': torch.utils.data.DataLoader(image_datasets['test'], batch_size=1, shuffle=True)
-    }
+class PneumoniaDataset(Dataset):
+    def __init__(self, data_dir, transform=None, train=True):
+        self.data_dir = data_dir
+        self.image_paths, self.labels = self.load_dataset(train)
+        self.transform = transform
 
-    return dataloaders
+    def __len__(self):
+        return len(self.image_paths)
 
+    def __getitem__(self, idx):
+        img_path = self.image_paths[idx]
+        label = self.labels[idx]
+
+        # Load image
+        img = Image.open(img_path).convert("RGB")
+
+        # Apply transformations
+        if self.transform:
+            img = self.transform(img)
+
+        return img, label
+
+    def load_dataset(self, train):
+        image_paths = []
+        labels = []
+
+        split_dir = 'train' if train else 'test'  # Adjust as needed
+        classes = os.listdir(os.path.join(self.data_dir, split_dir))
+
+        for class_name in classes:
+            class_dir = os.path.join(self.data_dir, split_dir, class_name)
+            if os.path.isdir(class_dir):
+                class_label = 1 if class_name == "PNEUMONIA" else 0
+
+                for img_name in os.listdir(class_dir):
+                    img_path = os.path.join(class_dir, img_name)
+                    if os.path.isfile(img_path):  # Check if it's a file
+                        image_paths.append(img_path)
+                        labels.append(class_label)
+
+        return image_paths, labels
+
+    # Add functions for preprocessing, augmentation, and post-processing
+    def preprocess(self, img):
+        # Add preprocessing steps if needed
+        return img
+
+    def augment(self, img):
+        # Add data augmentation steps if needed
+        return img
+
+    def postprocess(self, img):
+        # Add post-processing steps if needed
+        return img
+
+# Example usage:
+# data_dir = "../data"
+# transform = transforms.Compose([transforms.Resize((224, 224)),
+#                                 transforms.ToTensor()])
+# pneumonia_dataset = PneumoniaDataset(data_dir, transform)
+# image, label = pneumonia_dataset[0]
+#
