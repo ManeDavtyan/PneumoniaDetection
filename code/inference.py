@@ -25,9 +25,11 @@ def inference_single_image(image_path, model, save_path):
         output = model(image)
 
     # Convert the output to a probability (assuming binary classification)
+    # This is the probability of having Pneumonia
     probability = torch.sigmoid(output).item()
 
     # Classify based on a threshold (you can adjust this threshold as needed)
+    # The default threshold of 0.5 is commonly used, as it balances precision and recall.
     predicted_class = 1 if probability > 0.5 else 0
 
     # Save the result
@@ -37,14 +39,14 @@ def inference_single_image(image_path, model, save_path):
 
 if __name__ == "__main__":
     # Example usage:
-    image_path = '../data/test/NORMAL/IM-0075-0001.jpeg'
+    image_path = '../data/test/NORMAL/IM-0025-0001.jpeg'
 
-    save_path = "../result/IM-0075-0001_result.txt"
+    save_path = "../result/IM-0025-0001_result.txt"
 
     # Instantiate the VGG16 model
     vgg16_model = SimpleVGG16()
 
-    # Load the trained weights 
+    # Load the trained weights
     vgg16_model.load_state_dict(torch.load('../result/simple_vgg16.pth'))
 
     # Run inference and save the result
