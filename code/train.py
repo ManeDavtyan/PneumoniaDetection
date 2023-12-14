@@ -1,3 +1,7 @@
+# # # Contains the training codes. It must accept a dataset path and hyperparameters as inputs.
+# # # It should produce and save at least one checkpoint as output.
+
+
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -76,8 +80,8 @@ def train_model(dataset_path, output_checkpoint_path, output_log_path, num_epoch
 if __name__ == "__main__":
     # Example usage:
     dataset_path = "../data"
-    output_checkpoint_path = "../result/simple_vgg16.pth"  #saving a checkpoint
-    output_log_path = "../result/loss_accuracy.txt"
+    output_checkpoint_path = "../result/simple_vgg16.pth"
+    output_log_path = "../result/simple_vgg16_loss_accuracy.txt"
 
     train_model(dataset_path, output_checkpoint_path, output_log_path)
 
