@@ -70,4 +70,3 @@ class PneumoniaDataset(Dataset):
 #                                 transforms.ToTensor()])
 # pneumonia_dataset = PneumoniaDataset(data_dir, transform)
 # image, label = pneumonia_dataset[0]
-#
