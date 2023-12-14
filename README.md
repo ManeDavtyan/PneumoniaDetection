@@ -88,8 +88,8 @@ pip install -r requirements.txt
 1. **Training the Model:**
    - Train the `SimpleVGG16` model on your dataset using the provided script. Adjust the paths and hyperparameters as needed. Initially, 16 epochs will be run, while saving the loss and accuracy values in a .txt file in result folder. 
 
-   ```bash
-   python code/train.py --dataset_path ../data --output_checkpoint_path ../results/model_checkpoint.pth
+```{python}
+python code/train.py --dataset_path ../data --output_checkpoint_path ../results/model_checkpoint.pth
 ```
 
 2. **Inference on Single Image:**
