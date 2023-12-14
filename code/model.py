@@ -1,6 +1,5 @@
-#Contains all code related to the code,
-# including network architecture, layers, and loss functions.
-# models.py
+# # # Contains all code related to the code,
+# # # including network architecture, layers, and loss functions.
 
 
 import torch
