@@ -108,3 +108,4 @@ output = model(example_input_tensor)
 
 This project aims to contribute to the early diagnosis of pneumonia through the application of deep learning techniques. The provided model and scripts offer a foundation for further research and development in medical image analysis.
 
+You can find the chest X-ray images dataset here -> https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia/data
