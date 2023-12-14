@@ -1,28 +1,10 @@
-# Pneumonia Detection : VGG16
-## Overview
-This project aims to develop a Pneumonia detection model using PyTorch. The repository includes code for data preprocessing, model training, and image inference.
+# Pneumonia Detection : SimpleVGG16
 
-## Project Structure
-The project is organized into the following structure:
+## Objective
+The primary objective of this project is to implement and train a deep learning model for the detection of pneumonia from chest X-ray images. The model, a simplified version of the VGG16 architecture named `SimpleVGG16`, is trained on a provided dataset containing images of individuals with and without pneumonia.
 
-- `code/`: Contains the source code
-  - `dataset.py`: Dataset-related code
-  - `model.py`: Model architecture
-  - `train.py`: Training script
-  - `inference.py`: Inference script
-- `data/`: Dataset directory
-  - `train/`: Training data
-    - `NORMAL/`: Images of normal chest X-rays
-    - `PNEUMONIA/`: Images of chest X-rays with pneumonia
-  - `test/`: Testing data
-    - `NORMAL/`
-    - `PNEUMONIA/`
-  - `val/`: Validation data
-    - `NORMAL/`
-    - `PNEUMONIA/`
-- `results/`: Directory for storing model checkpoints, logs, and inference results
 
-## Project Idea
+## Project Implementation
 The main goal of this project is to create a Pneumonia detection model using a simplified VGG16 architecture implemented from scratch. The model is designed to classify chest X-ray images of patients as either having pneumonia or not. The project encompasses the following key components:
 
 1. **Dataset Handling (`code/dataset.py`):**
@@ -121,27 +103,6 @@ output = model(example_input_tensor)
 # Interpret the output as needed
 
 ```
-## Project Overview
-
-### Objective
-
-The primary objective of this project is to implement and train a deep learning model for the detection of pneumonia from chest X-ray images. The model, a simplified version of the VGG16 architecture named `SimpleVGG16`, is trained on a provided dataset containing images of individuals with and without pneumonia.
-
-### Pneumonia
-
-Pneumonia is a respiratory infection that inflames the air sacs in one or both lungs. It can be caused by various pathogens, including bacteria, viruses, and fungi. Common symptoms include cough, fever, and difficulty breathing. Early detection of pneumonia is crucial for timely and effective medical intervention.
-
-### Implementation
-
-The project involves the following key components:
-
-1. **Dataset:** The dataset consists of chest X-ray images categorized into classes: "NORMAL" (no pneumonia) and "PNEUMONIA" (pneumonia present).
-
-2. **Model Architecture:** The `SimpleVGG16` model is designed to analyze and classify chest X-ray images. It is implemented from scratch and trained on the provided dataset.
-
-3. **Training:** The training script (`train.py`) allows users to train the model on their dataset, specifying the dataset path, output checkpoint path, and hyperparameters.
-
-4. **Inference:** The inference script (`inference.py`) enables the classification of a single image using the trained model, providing predictions and probabilities.
 
 ### Conclusion
 
