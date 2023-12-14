@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # Instantiate the VGG16 model
     vgg16_model = SimpleVGG16()
 
-    # Load the trained weights (replace 'path/to/your/model_weights.pth' with the actual path)
+    # Load the trained weights 
     vgg16_model.load_state_dict(torch.load('../result/simple_vgg16.pth'))
 
     # Run inference and save the result
