@@ -1,5 +1,4 @@
-# Pneumonia Detection Project
-
+# Pneumonia Detection : VGG16
 ## Overview
 This project aims to develop a Pneumonia detection model using PyTorch. The repository includes code for data preprocessing, model training, and image inference.
 
