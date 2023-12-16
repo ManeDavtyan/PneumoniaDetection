@@ -53,15 +53,27 @@ class PneumoniaDataset(Dataset):
 
     # Add functions for preprocessing, augmentation, and post-processing
     def preprocess(self, img):
-        # Add preprocessing steps if needed
+        preprocess_transform = transforms.Compose([
+            transforms.Resize((256, 256)),  # Resize to 256x256
+            transforms.CenterCrop((224, 224)),  # Center crop to 224x224
+            transforms.ToTensor(),
+        ])
+        img = preprocess_transform(img)
         return img
 
     def augment(self, img):
-        # Add data augmentation steps if needed
+        augment_transform = transforms.Compose([
+            transforms.RandomHorizontalFlip(),  # Randomly flip horizontally
+            transforms.RandomRotation(10),  # Randomly rotate by 10 degrees
+        ])
+        img = augment_transform(img)
         return img
 
     def postprocess(self, img):
-        # Add post-processing steps if needed
+        postprocess_transform = transforms.Compose([
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+        ])
+        img = postprocess_transform(img)
         return img
 
 # Example usage:
@@ -70,3 +82,4 @@ class PneumoniaDataset(Dataset):
 #                                 transforms.ToTensor()])
 # pneumonia_dataset = PneumoniaDataset(data_dir, transform)
 # image, label = pneumonia_dataset[0]
+#
